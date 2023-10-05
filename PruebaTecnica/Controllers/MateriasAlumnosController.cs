@@ -41,6 +41,7 @@ namespace PruebaTecnica.Controllers
         public ActionResult ListarMaterias(int id)
         {
             List<Materia> list = new List<Materia>();
+            string alumno_name = "";
             using (Entities db = new Entities())
             {
                 list = (from c in db.alumnmatrias_piv
@@ -61,10 +62,17 @@ namespace PruebaTecnica.Controllers
                             ID_Materia = ch.ID_Materia,
                             materia = ch.Materia
                         }).ToList();
-               
+
+                foreach (var item in db.Alumnos)
+                {
+                    if (item.ID_Alumno == id)
+                        alumno_name = item.Nombre+" "+item.Apaterno+" "+item.Amaterno;
+                }
             }
 
-            ViewBag.titulo = "Alumno id :" + id.ToString();
+
+
+            ViewBag.titulo = alumno_name;
             return View(list);
 
         }
