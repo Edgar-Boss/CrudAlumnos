@@ -242,6 +242,7 @@
     <Content Include="Views\Shared\_NotificationPanel.cshtml" />
     <Content Include="Views\MateriasAlumnos\Editar_Alumno.cshtml" />
     <Content Include="Views\Materias\ListarMaterias.cshtml" />
+    <Content Include="Views\Materias\Nueva_materia.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

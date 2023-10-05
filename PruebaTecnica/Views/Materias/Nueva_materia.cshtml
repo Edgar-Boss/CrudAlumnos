@@ -1,0 +1,19 @@
+﻿﻿@model PruebaTecnica.Models.Materia
+<h2>ViewBag.Title</h2>
+
+@using (Html.BeginForm("Nuevo_Materia", "materias", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-md-12">
+            <div>
+                @Html.LabelFor(c => c.materia)
+                @Html.TextBoxFor(c => c.materia, "", new { @class = "form-control" })
+              
+            </div>
+
+            <div style="text-align:right;">
+                <input value="Guardar" class="btn btn-success" type="submit" />
+            </div>
+        </div>
+    </div>
+}

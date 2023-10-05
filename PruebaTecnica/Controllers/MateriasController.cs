@@ -1,6 +1,7 @@
 ﻿using PruebaTecnica.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -62,6 +63,21 @@ namespace PruebaTecnica.Controllers
                 return Redirect("~/Materias/Listarmaterias");
             }
         }
+
+
+        public ActionResult Nueva_materia()
+        {
+
+
+            ViewBag.titulo="Nueva Materia";
+            return View();
+        }
+
+       
+
+
+
+
 
         public void Alert(string message, NotificationType notificationType)
         {
