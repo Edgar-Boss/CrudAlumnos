@@ -243,6 +243,7 @@
     <Content Include="Views\MateriasAlumnos\Editar_Alumno.cshtml" />
     <Content Include="Views\Materias\ListarMaterias.cshtml" />
     <Content Include="Views\Materias\Nueva_materia.cshtml" />
+    <Content Include="Views\MateriasAlumnos\Nuevo_Alumno.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

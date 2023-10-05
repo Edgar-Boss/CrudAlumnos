@@ -1,0 +1,31 @@
+﻿﻿@model PruebaTecnica.Models.Alumnos
+<h2>@ViewBag.titulo</h2>
+
+@using (Html.BeginForm("Nuevo_Alumno", "MateriasAlumnos", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-md-12">
+            <div>
+                @Html.LabelFor(c => c.Nombre)
+                @Html.TextBoxFor(c => c.Nombre, "", new { @class = "form-control" })
+            </div>
+            <div>
+                @Html.LabelFor(c => c.Apaterno)
+                @Html.TextBoxFor(c => c.Apaterno, "", new { @class = "form-control" })
+            </div>
+            <div>
+                @Html.LabelFor(c => c.Amaterno)
+                @Html.TextBoxFor(c => c.Amaterno, "", new { @class = "form-control" })
+            </div>
+            <div>
+                @Html.LabelFor(c => c.Telefono)
+                @Html.TextBoxFor(c => c.Telefono, "", new { @class = "form-control" })
+            </div>
+
+
+            <div style="text-align:right;">
+                <input value="Guardar" class="btn btn-success" type="submit" />
+            </div>
+        </div>
+    </div>
+}

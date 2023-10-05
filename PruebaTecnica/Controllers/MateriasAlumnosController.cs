@@ -112,6 +112,59 @@ namespace PruebaTecnica.Controllers
         }
 
 
+
+
+        public ActionResult Nuevo_Alumno()
+        {
+
+
+            ViewBag.titulo = "Nueva materia";
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult Nuevo_Alumno(Alumno model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    using (Entities context = new Entities())
+                    {
+                        var alumnos = new PruebaTecnica.Models.Alumnos();
+                        alumnos.ID_Alumno= model.ID_Alumno;
+                        alumnos.Nombre = model.Nombre;
+                        alumnos.Apaterno = model.Apaterno;
+                        alumnos.Amaterno = model.Amaterno;
+                        alumnos.Telefono = model.Telefono;
+                       
+
+
+
+                        context.Alumnos.Add(alumnos);
+                        context.SaveChanges();
+                        Alert("Alumno registrado con exito", NotificationType.success);
+                        return Redirect("~/MateriasAlumnos/ListarAlumnos");
+                    }
+                }
+                else
+                {
+
+                    Alert("Datos no válidos", NotificationType.warnig);
+
+                    return View(model);
+                }
+            }
+            catch (Exception ex)
+            {
+                Alert("Error" + ex.Message, NotificationType.error);
+
+                return View(model);
+            }
+        }
+
+
         public void Alert(string message, NotificationType notificationType)
         {
             var msg = "<script language='javascript'>Swal.fire('" + notificationType.ToString().ToUpper() +
