@@ -1,0 +1,51 @@
+﻿@model List<PruebaTecnica.Models.Alumno>
+
+
+
+<h2>@ViewBag.titulo</h2>
+
+<div class="row">
+    <div class="col-md-12" style="text-align:right;">
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table-striped table-bordered table-bordered table-responsive">
+            <div class="row">
+                <div class="col-md-12 mb-3" style="text-align:right;">
+                    <a class="btn btn-primary">Agregar</a>
+
+                </div>
+
+            </div>
+            <tr>
+                <th>Nombre </th>
+                <th>Acciones </th>
+                <th>Apellido Paterno</th>
+                <th>Apellido Materno</th>
+                <th></th>
+
+                @foreach (var Elemento in Model)
+                {
+<tr>
+                    <td>@Elemento.ID_Alumno</td>
+                    <td>@Elemento.Nombre</td>
+                    <td>@Elemento.Apaterno</td>
+                    <td>@Elemento.Amaterno</td>
+
+                    <td>
+                        <a class="btn btn-warning" href="~/MateriasAlumnos/ListarMaterias/@Elemento.ID_Alumno"><i class="fa-regular fa-pen-to-square" style="color:#ffffff;"></i>Editar</a>
+                        <a href="~/MateriasAlumnos/Eliminar_Alumno/@Elemento.ID_Alumno" class="btn btn-danger">Eliminar</a>
+
+                    </td>
+                </tr>
+            }
+
+
+            </table>
+        </div>
+    </div>
+
+

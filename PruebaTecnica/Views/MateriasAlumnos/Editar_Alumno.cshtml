@@ -1,0 +1,25 @@
+﻿
+
+<h2>@ViewBag.titulo</h2>
+
+@using (Html.BeginForm("Editar_Alumno", "MateriasAlumnos", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-md-12">
+            
+            <div>
+                @*@Html.LabelFor()
+                @Html.TextBoxFor(c => c.materia, "", new { @class = "form-control" })*@
+                
+            </div>
+           
+           
+            
+           
+
+            <div style="text-align:right;">
+                <input value="Guardar" class="btn btn-success" type="submit" />
+            </div>
+        </div>
+    </div>
+}

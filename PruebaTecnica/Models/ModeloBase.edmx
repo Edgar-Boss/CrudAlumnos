@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="alumnmatrias_piv">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Alumno_id" Type="int" />
+          <Property Name="Materia_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Alumnos">
+          <Key>
+            <PropertyRef Name="ID_Alumno" />
+          </Key>
+          <Property Name="ID_Alumno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Apaterno" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Amaterno" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Materias">
+          <Key>
+            <PropertyRef Name="ID_Materia" />
+          </Key>
+          <Property Name="ID_Materia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Materia" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Creditos" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK__alumnmatr__Alumn__440B1D61">
+          <End Role="Alumnos" Type="Self.Alumnos" Multiplicity="0..1" />
+          <End Role="alumnmatrias_piv" Type="Self.alumnmatrias_piv" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Alumnos">
+              <PropertyRef Name="ID_Alumno" />
+            </Principal>
+            <Dependent Role="alumnmatrias_piv">
+              <PropertyRef Name="Alumno_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__alumnmatr__Mater__44FF419A">
+          <End Role="Materias" Type="Self.Materias" Multiplicity="0..1" />
+          <End Role="alumnmatrias_piv" Type="Self.alumnmatrias_piv" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materias">
+              <PropertyRef Name="ID_Materia" />
+            </Principal>
+            <Dependent Role="alumnmatrias_piv">
+              <PropertyRef Name="Materia_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="alumnmatrias_piv" EntityType="Self.alumnmatrias_piv" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Alumnos" EntityType="Self.Alumnos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Materias" EntityType="Self.Materias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__alumnmatr__Alumn__440B1D61" Association="Self.FK__alumnmatr__Alumn__440B1D61">
+            <End Role="Alumnos" EntitySet="Alumnos" />
+            <End Role="alumnmatrias_piv" EntitySet="alumnmatrias_piv" />
+          </AssociationSet>
+          <AssociationSet Name="FK__alumnmatr__Mater__44FF419A" Association="Self.FK__alumnmatr__Mater__44FF419A">
+            <End Role="Materias" EntitySet="Materias" />
+            <End Role="alumnmatrias_piv" EntitySet="alumnmatrias_piv" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="alumnmatrias_piv">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Alumno_id" Type="Int32" />
+          <Property Name="Materia_id" Type="Int32" />
+          <NavigationProperty Name="Alumnos" Relationship="Self.FK__alumnmatr__Alumn__440B1D61" FromRole="alumnmatrias_piv" ToRole="Alumnos" />
+          <NavigationProperty Name="Materias" Relationship="Self.FK__alumnmatr__Mater__44FF419A" FromRole="alumnmatrias_piv" ToRole="Materias" />
+        </EntityType>
+        <EntityType Name="Alumnos">
+          <Key>
+            <PropertyRef Name="ID_Alumno" />
+          </Key>
+          <Property Name="ID_Alumno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Apaterno" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Amaterno" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="alumnmatrias_piv" Relationship="Self.FK__alumnmatr__Alumn__440B1D61" FromRole="Alumnos" ToRole="alumnmatrias_piv" />
+        </EntityType>
+        <EntityType Name="Materias">
+          <Key>
+            <PropertyRef Name="ID_Materia" />
+          </Key>
+          <Property Name="ID_Materia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Materia" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Creditos" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="alumnmatrias_piv" Relationship="Self.FK__alumnmatr__Mater__44FF419A" FromRole="Materias" ToRole="alumnmatrias_piv" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK__alumnmatr__Alumn__440B1D61">
+          <End Role="Alumnos" Type="Self.Alumnos" Multiplicity="0..1" />
+          <End Role="alumnmatrias_piv" Type="Self.alumnmatrias_piv" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Alumnos">
+              <PropertyRef Name="ID_Alumno" />
+            </Principal>
+            <Dependent Role="alumnmatrias_piv">
+              <PropertyRef Name="Alumno_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__alumnmatr__Mater__44FF419A">
+          <End Role="Materias" Type="Self.Materias" Multiplicity="0..1" />
+          <End Role="alumnmatrias_piv" Type="Self.alumnmatrias_piv" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Materias">
+              <PropertyRef Name="ID_Materia" />
+            </Principal>
+            <Dependent Role="alumnmatrias_piv">
+              <PropertyRef Name="Materia_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="alumnmatrias_piv" EntityType="Self.alumnmatrias_piv" />
+          <EntitySet Name="Alumnos" EntityType="Self.Alumnos" />
+          <EntitySet Name="Materias" EntityType="Self.Materias" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <AssociationSet Name="FK__alumnmatr__Alumn__440B1D61" Association="Self.FK__alumnmatr__Alumn__440B1D61">
+            <End Role="Alumnos" EntitySet="Alumnos" />
+            <End Role="alumnmatrias_piv" EntitySet="alumnmatrias_piv" />
+          </AssociationSet>
+          <AssociationSet Name="FK__alumnmatr__Mater__44FF419A" Association="Self.FK__alumnmatr__Mater__44FF419A">
+            <End Role="Materias" EntitySet="Materias" />
+            <End Role="alumnmatrias_piv" EntitySet="alumnmatrias_piv" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="alumnmatrias_piv">
+            <EntityTypeMapping TypeName="Model.alumnmatrias_piv">
+              <MappingFragment StoreEntitySet="alumnmatrias_piv">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Alumno_id" ColumnName="Alumno_id" />
+                <ScalarProperty Name="Materia_id" ColumnName="Materia_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Alumnos">
+            <EntityTypeMapping TypeName="Model.Alumnos">
+              <MappingFragment StoreEntitySet="Alumnos">
+                <ScalarProperty Name="ID_Alumno" ColumnName="ID_Alumno" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apaterno" ColumnName="Apaterno" />
+                <ScalarProperty Name="Amaterno" ColumnName="Amaterno" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Materias">
+            <EntityTypeMapping TypeName="Model.Materias">
+              <MappingFragment StoreEntitySet="Materias">
+                <ScalarProperty Name="ID_Materia" ColumnName="ID_Materia" />
+                <ScalarProperty Name="Materia" ColumnName="Materia" />
+                <ScalarProperty Name="Creditos" ColumnName="Creditos" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Model.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
