@@ -69,11 +69,54 @@ namespace PruebaTecnica.Controllers
         {
 
 
-            ViewBag.titulo="Nueva Materia";
+            ViewBag.titulo = "Lista Materias";
             return View();
         }
 
-       
+
+        [HttpPost]
+        public ActionResult Nueva_materia(Materia model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    using (Entities context = new Entities())
+                    {
+                        var materias = new PruebaTecnica.Models.Materias();
+                        materias.ID_Materia= model.ID_Materia;
+                        materias.Materia = model.materia;
+                        materias.Creditos = model.creditos;
+                       
+                       
+
+                        context.Materias.Add(materias);
+                        context.SaveChanges();
+                        Alert("Materia registrada con exito", NotificationType.success);
+                        return Redirect("~/Materias/ListarMaterias");
+                    }
+                }
+                else
+                {
+
+                    Alert("Datos no válidos", NotificationType.warnig);
+                    
+                    return View(model);
+                }
+            }
+            catch (Exception ex)
+            {
+                Alert("Error" + ex.Message, NotificationType.error);
+             
+                return View(model);
+            }
+        }
+
+
+
+
+
+
 
 
 
